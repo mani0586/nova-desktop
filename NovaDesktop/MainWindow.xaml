@@ -17,6 +17,11 @@
           <TextBlock x:Name="PageSubtitle" Text="A calmer way to use Windows." Opacity="0.7" />
         </StackPanel>
         <StackPanel Grid.Row="1" Spacing="16">
+          <StackPanel x:Name="LauncherPanel" Visibility="Collapsed" Spacing="10">
+            <TextBox x:Name="AppSearch" PlaceholderText="Search installed Start Menu apps" TextChanged="AppSearch_TextChanged" />
+            <ListView x:Name="AppResults" Height="300" DisplayMemberPath="Name" IsItemClickEnabled="True" ItemClick="AppResults_ItemClick" />
+            <TextBlock x:Name="LauncherStatus" Text="Search your Start Menu shortcuts." TextWrapping="Wrap" />
+          </StackPanel>
           <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="16" Padding="24">
             <StackPanel Spacing="12">
               <TextBlock Text="Your desktop, your way" FontSize="22" FontWeight="SemiBold" />

@@ -19,3 +19,12 @@ jobs:
         run: dotnet restore NovaDesktop/NovaDesktop.csproj -p:Platform=x64
       - name: Build
         run: dotnet build NovaDesktop/NovaDesktop.csproj -c Release -p:Platform=x64 --no-restore
+      - name: Publish unpackaged x64 app
+        run: dotnet publish NovaDesktop/NovaDesktop.csproj -c Release -r win-x64 --self-contained true -p:Platform=x64 -p:WindowsAppSDKSelfContained=true -p:WindowsPackageType=None -o artifacts/NovaDesktop-win-x64
+      - name: Upload Windows app artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NovaDesktop-win-x64-preview
+          path: artifacts/NovaDesktop-win-x64/
+          if-no-files-found: error
+          retention-days: 14
